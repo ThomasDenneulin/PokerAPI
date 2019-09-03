@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use App\Http\Resources\PlayerResource;
 use App\Models\Player;
+use App\Http\Resources\HandResource;
+use App\Models\Hand;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/players','PlayerController@store');
 
 Route::get('/Players', 'PlayerController@index');
+
+Route::post('/hands','HandController@store');
+
+Route::get('/Hands', 'HandController@index');

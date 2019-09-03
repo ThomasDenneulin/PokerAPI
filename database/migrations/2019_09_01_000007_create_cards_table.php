@@ -17,14 +17,6 @@ class CreateCardsTable extends Migration
             $table->increments('id');
             $table->string('value');
             $table->string('color');
-
-            $table->unsignedInteger('round_id');
-            $table->foreign('round_id')
-            ->references('id')->on('rounds');
-
-            $table->unsignedInteger('actions_id');
-            $table->foreign('actions_id')
-            ->references('id')->on('actions');
             $table->timestamps();
         });
     }

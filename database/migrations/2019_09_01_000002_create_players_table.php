@@ -18,10 +18,7 @@ class CreatePlayersTable extends Migration
                 $table->increments('id');
                 $table->string('name');
                 $table->string('seat');
-
-                $table->unsignedInteger('hands_id');
-                $table->foreign('hands_id')
-                ->references('id')->on('hands');
+                
                 $table->timestamps();
             });
         }

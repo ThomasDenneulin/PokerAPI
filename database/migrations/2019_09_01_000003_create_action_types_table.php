@@ -17,11 +17,6 @@ class CreateActionTypesTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->timestamps();
-
-            $table->unsignedInteger('players_id');
-            $table->foreign('players_id')
-            ->references('id')->on('players')
-            ->onDelete('cascade');
         });
     }
 
