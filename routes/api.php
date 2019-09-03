@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Resources\PlayerResource;
+use App\Models\Player;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/Players', function() {
-    return new PlayerResource(Players::all());
+    return new PlayerResource(Player::all());
 });
