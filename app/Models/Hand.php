@@ -11,11 +11,7 @@ class Hand extends Model
 
     //Onn peux 
     public function players(){
-        return $this->hasMany('\Models\Player','hand_id','id');
-    }
-
-    public function rounds(){
-        return $this->hasMany('\Models\Round','hand_id','id');
+        return $this->belongsToMany(Player::class);
     }
 
 }
