@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/Players', function() {
-    return new PlayerResource(Player::all());
-});
+Route::post('/players','PlayerController@store');
+
+Route::get('/Players', 'PlayerController@index');
