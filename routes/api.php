@@ -20,11 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('/players','PlayerController@store');
-
-Route::get('/Players', 'PlayerController@index');
-
-Route::post('/hands','HandController@store');
-
-Route::get('/Hands', 'HandController@index');
+Route::post('/hand', 'HandController@store');
