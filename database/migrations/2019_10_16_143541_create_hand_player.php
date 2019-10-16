@@ -14,11 +14,17 @@ class CreateHandPlayer extends Migration
     public function up()
     {
         Schema::create('hand_player', function (Blueprint $table) {
-            $table->int('hand_ID');
-            $table->foreign('hand_ID')->reference('id')->on('hand');
+            $table->unsignedBigInteger('hand_id');
+            $table->foreign('hand_id')
+                ->references('id')
+                ->on('hands')
+                ->onDelete('cascade');
 
-            $table->int('player_ID');
-            $table->foreign('player_ID')->reference('id')->on('player');
+            $table->unsignedBigInteger('player_id');
+            $table->foreign('player_id')
+                ->references('id')
+                ->on('players')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

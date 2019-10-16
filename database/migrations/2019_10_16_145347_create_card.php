@@ -13,9 +13,8 @@ class CreateCard extends Migration
      */
     public function up()
     {
-        Schema::create('card', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->primary('id');
             $table->integer('value');
             $table->string('color');
             $table->timestamps();
@@ -29,6 +28,6 @@ class CreateCard extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('card');
+        Schema::dropIfExists('cards');
     }
 }

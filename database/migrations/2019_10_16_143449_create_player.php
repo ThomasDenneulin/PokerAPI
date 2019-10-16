@@ -13,9 +13,8 @@ class CreatePlayer extends Migration
      */
     public function up()
     {
-        Schema::create('player', function (Blueprint $table) {
-            $table->increment('id');    
-            $table->primary('id');
+        Schema::create('players', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ class CreatePlayer extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('player');
+        Schema::dropIfExists('players');
     }
 }

@@ -13,15 +13,20 @@ class CreateRound extends Migration
      */
     public function up()
     {
-        Schema::create('round', function (Blueprint $table) {
+        Schema::create('rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->primary('id');
 
-            $table->int('card_ID');
-            $table->foreign('card_ID')->reference('id')->on('card');
+            $table->unsignedBigInteger('card_id');
+            $table->foreign('card_id')
+                ->references('id')
+                ->on('cards')
+                ->onDelete('cascade');
 
-            $table->int('hand_ID');
-            $table->foreign('hand_ID')->reference('id')->on('hand');
+            $table->unsignedBigInteger('hand_id');
+            $table->foreign('hand_id')
+                ->references('id')
+                ->on('hands')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -34,6 +39,6 @@ class CreateRound extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('round');
+        Schema::dropIfExists('rounds');
     }
 }

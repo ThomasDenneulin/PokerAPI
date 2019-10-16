@@ -14,11 +14,17 @@ class CreateCardPlayer extends Migration
     public function up()
     {
         Schema::create('card_player', function (Blueprint $table) {
-            $table->int('card_ID');
-            $table->foreign('card_ID')->reference('id')->on('card');
+            $table->unsignedBigInteger('card_id');
+            $table->foreign('card_id')
+                ->references('id')
+                ->on('cards')
+                ->onDelete('cascade');
 
-            $table->int('player_ID');
-            $table->foreign('player_ID')->reference('id')->on('player');
+            $table->unsignedBigInteger('player_id');
+            $table->foreign('player_id')
+                ->references('id')
+                ->on('players')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
