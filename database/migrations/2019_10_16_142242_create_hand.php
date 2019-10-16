@@ -13,16 +13,13 @@ class CreateHand extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('hands')){
-            Schema::create('hand', function (Blueprint $table) {
-                $table->increment('id');    
-                $table->datetime('date');
-                $table->string('gameType');
-                $table->boolean('isRealMoney');
-                $table->primary('id');
-                $table->timestamps();
-            });
-        }
+        Schema::create('hands', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->datetime('date');
+            $table->string('gameType');
+            $table->boolean('isRealMoney');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -32,6 +29,6 @@ class CreateHand extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hand');
+        Schema::dropIfExists('hands');
     }
 }

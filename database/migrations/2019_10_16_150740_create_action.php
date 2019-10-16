@@ -13,17 +13,22 @@ class CreateAction extends Migration
      */
     public function up()
     {
-        Schema::create('action', function (Blueprint $table) {
+        Schema::create('actions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->primary('id');
 
-            $table->int('player_ID');
-            $table->foreign('player_ID')->reference('id')->on('player');
+            $table->unsignedBigInteger('player_id');
+            $table->foreign('player_id')
+                ->references('id')
+                ->on('players')
+                ->onDelete('cascade');
 
-            $table->int('round_ID');
-            $table->foreign('round_ID')->reference('id')->on('round');
+            $table->unsignedBigInteger('round_id');
+            $table->foreign('round_id')
+                ->references('id')
+                ->on('rounds')
+                ->onDelete('cascade');
 
-            $table->int('type');
+            $table->integer('type');
             $table->string('value');
             $table->timestamps();
         });
@@ -36,6 +41,6 @@ class CreateAction extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('action');
+        Schema::dropIfExists('actions');
     }
 }
