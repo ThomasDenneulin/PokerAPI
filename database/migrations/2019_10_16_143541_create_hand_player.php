@@ -25,6 +25,9 @@ class CreateHandPlayer extends Migration
                 ->references('id')
                 ->on('players')
                 ->onDelete('cascade');
+
+            $table->integer('seat');
+            $table->double('stack');
             $table->timestamps();
         });
     }
