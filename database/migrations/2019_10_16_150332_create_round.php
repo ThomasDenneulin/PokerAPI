@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCardRoundTable extends Migration
+class CreateRound extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateCardRoundTable extends Migration
      */
     public function up()
     {
-        Schema::create('card_round', function (Blueprint $table) {
+        Schema::create('round', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('round_id')->unsigned();
-            $table->integer('card_id')->unsigned();
+            $table->primary('id');
+
+            $table->int('card_ID');
+            $table->foreign('card_ID')->reference('id')->on('card');
+
+            $table->int('hand_ID');
+            $table->foreign('hand_ID')->reference('id')->on('hand');
+
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ class CreateCardRoundTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('card_round');
+        Schema::dropIfExists('round');
     }
 }

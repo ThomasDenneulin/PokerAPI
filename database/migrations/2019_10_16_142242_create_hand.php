@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHandsTable extends Migration
+class CreateHand extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,12 @@ class CreateHandsTable extends Migration
     public function up()
     {
         if(!Schema::hasTable('hands')){
-            Schema::create('hands', function (Blueprint $table) {
-                
-                $table->increments('id');
+            Schema::create('hand', function (Blueprint $table) {
+                $table->increment('id');    
                 $table->datetime('date');
-                $table->integer('buttonSeat');
+                $table->string('gameType');
+                $table->boolean('isRealMoney');
+                $table->primary('id');
                 $table->timestamps();
             });
         }
@@ -31,6 +32,6 @@ class CreateHandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hands');
+        Schema::dropIfExists('hand');
     }
 }

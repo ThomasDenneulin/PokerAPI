@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoundsTable extends Migration
+class CreateCardPlayer extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateRoundsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rounds', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('card_player', function (Blueprint $table) {
+            $table->int('card_ID');
+            $table->foreign('card_ID')->reference('id')->on('card');
 
-            $table->unsignedInteger('hands_id');
-            $table->foreign('hands_id')
-            ->references('id')->on('hands')
-            ->onDelete('cascade');
-
+            $table->int('player_ID');
+            $table->foreign('player_ID')->reference('id')->on('player');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateRoundsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rounds');
+        Schema::dropIfExists('card_player');
     }
 }
