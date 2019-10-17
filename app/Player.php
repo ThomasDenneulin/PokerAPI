@@ -18,7 +18,12 @@ class Player extends Model
      */
     public function cards()
     {
-        return $this->belongsToMany(Card::class, 'hand_player');
+        return $this->belongsToMany(Card::class);
+    }
+
+    public function hands()
+    {
+        return $this->belongsToMany(Hand::class);
     }
 }
 

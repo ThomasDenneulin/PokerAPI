@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/hand', 'HandController@store');
+
+Route::post('/hands', 'HandController@store');

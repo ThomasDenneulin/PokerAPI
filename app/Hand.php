@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Hand extends Model
 {
     //
+    /**
+     * @var false|string
+     */
+    public $date;
+
     public function players()
     {
-        return $this->belongsToMany(Player::class, 'hand_player');
+        return $this->belongsToMany(Player::class);
     }
 
     public function cards()

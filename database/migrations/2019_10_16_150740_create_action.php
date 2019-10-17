@@ -29,7 +29,8 @@ class CreateAction extends Migration
                 ->onDelete('cascade');
 
             $table->integer('type');
-            $table->string('value');
+            $table->string('value')
+                ->nullable();
             $table->timestamps();
         });
     }
