@@ -14,6 +14,7 @@ class CreateHandPlayer extends Migration
     public function up()
     {
         Schema::create('hand_player', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('hand_id');
             $table->foreign('hand_id')
                 ->references('id')

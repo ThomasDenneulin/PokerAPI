@@ -15,7 +15,7 @@ class CreateCard extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('value');
+            $table->string('value');
             $table->string('color');
             $table->timestamps();
         });
