@@ -64,9 +64,8 @@ class HandController extends Controller
                     $newAction->save();
                 }
             }
+            dd($newHand);
         };
-
-        dd('down');
     }
 
     public function show($id)
