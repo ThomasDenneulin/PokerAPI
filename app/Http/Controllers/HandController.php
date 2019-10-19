@@ -9,17 +9,33 @@ use App\Player;
 use App\Round;
 use Illuminate\Http\Request;
 
-
+/**
+ * Class HandController
+ * @package App\Http\Controllers
+ */
 class HandController extends Controller
 {
-    //
-    public function index()
+    /**
+     * Get hands from database
+     *
+     * @param Request $request
+     */
+    public function index(Request $request)
     {
         //
+        $data = $request->all();
+        Hand::all()
+            ->get();
     }
 
+    /**
+     * Store Hands in database.
+     *
+     * @param Request $request
+     */
     public function store(Request $request)
     {
+        dd(Action::all());
         $data = $request->all();
         foreach ($data as $hand) {
             $newHand = new Hand();

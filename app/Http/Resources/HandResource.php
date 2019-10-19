@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\HandPlayer;
+use App\Round;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HandResource extends JsonResource
@@ -18,7 +20,9 @@ class HandResource extends JsonResource
         return [
             'id' => $this->id,
             'date' => $this->date,
-            'isRealMoney' => $this->isRealMoney
+            'isRealMoney' => $this->isRealMoney,
+            'players' => $this->players(),
+            'rounds' => Round::whereIn('hand_id', $this->id)->get
         ];
     }
 }
