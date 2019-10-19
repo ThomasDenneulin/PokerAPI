@@ -21,8 +21,8 @@ class HandResource extends JsonResource
             'id' => $this->id,
             'date' => $this->date,
             'isRealMoney' => $this->isRealMoney,
-            'players' => $this->players(),
-            'rounds' => Round::whereIn('hand_id', $this->id)->get
+            'players' => new PlayerResource($this->players()),
+            'rounds' => new RoundResource($this->rounds())
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlayerResource extends JsonResource
+class RoundResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,9 @@ class PlayerResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name
+            'id' => $this->id,
+            'actions'=>new ActionResource($this->actions())
+
         ];
     }
 }

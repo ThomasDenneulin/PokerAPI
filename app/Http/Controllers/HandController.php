@@ -7,6 +7,7 @@ use App\Card;
 use App\Hand;
 use App\Player;
 use App\Round;
+use App\Http\Resources\HandResource;
 use Illuminate\Http\Request;
 
 /**
@@ -24,8 +25,9 @@ class HandController extends Controller
     {
         //
         $data = $request->all();
-        Hand::all()
-            ->get();
+        $tmp =Hand::all();
+
+        return new HandResource($tmp);
     }
 
     /**
@@ -35,7 +37,6 @@ class HandController extends Controller
      */
     public function store(Request $request)
     {
-        dd(Action::all());
         $data = $request->all();
         foreach ($data as $hand) {
             $newHand = new Hand();
@@ -53,6 +54,7 @@ class HandController extends Controller
 
             foreach ($hand['rounds'] as $round) {
                 $newRound = new Round();
+                $newRound['hand_id'] = $newHand['id'];
                 $newRound->save();
                 foreach ($round['cards'] as $card) {
                     $newCard = Card::firstOrCreate(
