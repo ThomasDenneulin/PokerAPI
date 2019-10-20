@@ -7,17 +7,34 @@ use App\Card;
 use App\Hand;
 use App\Player;
 use App\Round;
+use App\Http\Resources\HandResource;
 use Illuminate\Http\Request;
 
-
+/**
+ * Class HandController
+ * @package App\Http\Controllers
+ */
 class HandController extends Controller
 {
-    //
-    public function index()
+    /**
+     * Get hands from database
+     *
+     * @param Request $request
+     */
+    public function index(Request $request)
     {
         //
+        $data = $request->all();
+        $tmp =Hand::all();
+
+        return new HandResource($tmp);
     }
 
+    /**
+     * Store Hands in database.
+     *
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $data = $request->all();
@@ -37,6 +54,7 @@ class HandController extends Controller
 
             foreach ($hand['rounds'] as $round) {
                 $newRound = new Round();
+                $newRound['hand_id'] = $newHand['id'];
                 $newRound->save();
                 foreach ($round['cards'] as $card) {
                     $newCard = Card::firstOrCreate(

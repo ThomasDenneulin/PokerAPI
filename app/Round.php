@@ -11,4 +11,14 @@ class Round extends Model
     {
         return $this->belongsToMany(Card::class);
     }
+
+    public function hand()
+    {
+        return $this->belongsTo(Round::class);
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
 }

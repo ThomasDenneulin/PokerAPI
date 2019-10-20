@@ -16,6 +16,12 @@ class CreateRound extends Migration
         Schema::create('rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->unsignedBigInteger('hand_id');
+            $table->foreign('hand_id')
+                ->references('id')
+                ->on('hands')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
