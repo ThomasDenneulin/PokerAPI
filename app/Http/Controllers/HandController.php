@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Action;
 use App\Card;
 use App\Hand;
+use App\Http\Resources\HandCollection;
 use App\Player;
 use App\Round;
 use App\Http\Resources\HandResource;
@@ -21,13 +22,20 @@ class HandController extends Controller
      *
      * @param Request $request
      */
-    public function index(Request $request)
+    public function index(Request $request): HandCollection
     {
         //
         $data = $request->all();
-        $tmp =Hand::all();
 
-        return new HandResource($tmp);
+        return (new HandCollection(Hand::with(
+            [
+                'players',
+                'rounds',
+                'rounds.actions',
+                'rounds.cards'
+            ])
+            ->get())
+        );
     }
 
     /**
@@ -54,7 +62,9 @@ class HandController extends Controller
 
             foreach ($hand['rounds'] as $round) {
                 $newRound = new Round();
-                $newRound['hand_id'] = $newHand['id'];
+
+                $newRound->hand()
+                    ->associate($newHand);
                 $newRound->save();
                 foreach ($round['cards'] as $card) {
                     $newCard = Card::firstOrCreate(
@@ -63,8 +73,8 @@ class HandController extends Controller
                             'color' => $card['color']
                         ]
                     );
-                    $newRound->cards()->save($newCard);
-
+                    $newCard->rounds()
+                        ->attach($newRound);
                 }
                 foreach ($round['actions'] as $action) {
                     $newAction = new Action();
@@ -77,8 +87,10 @@ class HandController extends Controller
                     } else {
                         $newAction['value'] = null;
                     }
-                    $newAction['player_id'] = $playerAction['id'];
-                    $newAction['round_id'] = $newRound['id'];
+                    $newAction->player()
+                        ->associate($playerAction);
+                    $newAction->round()
+                        ->associate($newRound);
                     $newAction->save();
                 }
             }

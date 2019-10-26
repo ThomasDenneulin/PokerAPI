@@ -16,8 +16,8 @@ class RoundResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'actions'=>new ActionResource($this->actions())
-
+            'actions' => new ActionCollection($this->actions()),
+            'cards' => new CardCollection($this->cards())
         ];
     }
 }

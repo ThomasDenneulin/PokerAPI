@@ -25,6 +25,11 @@ class Player extends Model
     {
         return $this->belongsToMany(Hand::class);
     }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
 }
 
 
