@@ -107,4 +107,18 @@ class HandController extends Controller
     {
         //
     }
+
+    /**
+     * Get the streak bankroll from a player.
+     *
+     * @param Request $request
+     * @param Player $player
+     */
+    public function getStreak(
+        Request $request,
+        Player $player
+    ) {
+        $data = $request->all();
+        $builder = Hand::query();
+    }
 }

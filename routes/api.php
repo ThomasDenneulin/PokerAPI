@@ -22,4 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('/hands', 'HandController@store');
-Route::get('/hands', 'HandController@index');
+Route::get('/hands', 'HandController@index')
+    ->middleware('cors');
+
+Route::get('/player/{player}/hands/streak', 'HandController@getStreak')
+    ->middleware('cors');
