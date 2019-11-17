@@ -21,5 +21,23 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
-    }
+    },
+    "name": "PokerAPI",
+    "description": "API POKER",
+    "version": "1.0.0",
+    "main": "webpack.mix.js",
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ThomasDenneulin/PokerAPI.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ThomasDenneulin/PokerAPI/issues"
+    },
+    "homepage": "https://github.com/ThomasDenneulin/PokerAPI#readme"
 }

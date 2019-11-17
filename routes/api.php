@@ -21,5 +21,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/hands', 'HandController@store');
-Route::get('/hands', 'HandController@index');
+Route::post('/hands', 'HandController@store')
+    ->middleware('cors');
+Route::get('/hands', 'HandController@index')
+    ->middleware('cors');
+
+Route::post('/register', 'AuthController@register')
+    ->middleware('cors');
+
+Route::post('/login', 'AuthController@login')
+    ->middleware('cors');
+
+Route::get('/me', 'AuthController@me')
+    ->middleware('cors')
+    ->middleware('jwt.auth');
+
+Route::get('/player/{player}/hands/streak', 'HandController@getStreak')
+    ->middleware('cors');

@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Action extends Model
 {
-    //
+    /**
+     * Round
+     */
     public function round()
     {
-        $this->hasOne(Round::class, 'round_id');
+        return $this->belongsTo(Round::class);
     }
 
+    /**
+     * Player
+     */
     public function player()
     {
-        $this->hasOne(Player::class, 'player_id');
+        return $this->belongsTo(Player::class);
     }
 }

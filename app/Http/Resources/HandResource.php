@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\HandPlayer;
-use App\Round;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HandResource extends JsonResource
@@ -21,8 +19,8 @@ class HandResource extends JsonResource
             'id' => $this->id,
             'date' => $this->date,
             'isRealMoney' => $this->isRealMoney,
-            'players' => new PlayerResource($this->players()),
-            'rounds' => new RoundResource($this->rounds())
+            'players' => new PlayerCollection($this->players()),
+            'rounds' => new RoundCollection($this->rounds())
         ];
     }
 }

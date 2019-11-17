@@ -15,6 +15,7 @@ class CreateCardPlayer extends Migration
     {
         Schema::create('card_player', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->unsignedBigInteger('card_id');
             $table->foreign('card_id')
                 ->references('id')
