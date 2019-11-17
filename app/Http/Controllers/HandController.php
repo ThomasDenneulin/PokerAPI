@@ -8,7 +8,6 @@ use App\Hand;
 use App\Http\Resources\HandCollection;
 use App\Player;
 use App\Round;
-use App\Http\Resources\HandResource;
 use Illuminate\Http\Request;
 
 /**
@@ -46,7 +45,7 @@ class HandController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        foreach ($data as $hand) {
+        foreach ($data['hands'] as $hand) {
             $newHand = new Hand();
             $newHand['date'] = date('d-m-y');
             $newHand['gameType'] = 'aaaaa';
@@ -94,8 +93,9 @@ class HandController extends Controller
                     $newAction->save();
                 }
             }
-            dd($newHand);
         };
+
+        dd("Done");
     }
 
     public function show($id)

@@ -30,6 +30,11 @@ class Player extends Model
     {
         return $this->hasMany(Action::class);
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }
 
 

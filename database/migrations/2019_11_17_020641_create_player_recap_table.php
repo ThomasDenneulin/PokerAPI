@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCardPlayer extends Migration
+class CreatePlayerRecapTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,20 @@ class CreateCardPlayer extends Migration
      */
     public function up()
     {
-        Schema::create('card_player', function (Blueprint $table) {
+        Schema::create('player_recap', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->unsignedBigInteger('card_id');
-            $table->foreign('card_id')
-                ->references('id')
-                ->on('cards')
-                ->onDelete('cascade');
+            $table->timestamps();
 
             $table->unsignedBigInteger('player_id');
             $table->foreign('player_id')
                 ->references('id')
-                ->on('players')
+                ->on('players');
+
+            $table->unsignedBigInteger('recap_id');
+            $table->foreign('recap_id')
+                ->references('id')
+                ->on('recaps')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
@@ -38,6 +37,6 @@ class CreateCardPlayer extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('card_player');
+        Schema::dropIfExists('player_recap');
     }
 }
